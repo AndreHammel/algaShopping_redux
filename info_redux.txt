@@ -1,0 +1,4 @@
+O que é Redux ? Aprenda na prática!
+https://www.youtube.com/watch?v=jNXIQW6mmFA&t=165s
+
+https://facebook.github.io/flux/

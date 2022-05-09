@@ -5,3 +5,10 @@ export function sum(a, b) {
     payload: [ a, b ],
   }
 }
+
+export function subtract(a, b) {
+  return {
+    type: 'SUBTRACT',
+    payload: [ a, b ],
+  }
+}

@@ -5,13 +5,8 @@ import { subtract, sum } from '../store/calculator/Calculator.actions'
 function Calculator() {
   const dispatch = useDispatch()
   const result = useSelector(state => state.calculator)
-  const [ form, setForm ] = useState(0)
   const [ a, setA ] = useState(0)
   const [ b, setB ] = useState(0)
-
-  const handleChange = () => {
-
-  }
 
   return (
     <>

@@ -7,32 +7,20 @@ import productsMock from '../../mocks/productsList.json'
 import { Wrapper, Container } from './App.styles'
 import extractPercentage from '../../utils/extractPercentage'
 import Calculator from '../Calculator'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectAllProducts, selectSelectedProducts, selectSelectedProductsTotalPrice } from '../../store/Products/Products.selectors'
+import { toggleProduct } from '../../store/Products/Products.actions'
 
 function App() {
   const colors = [ '#62CBC6', '#00ABAD', '#00858C', '#006073', '#004D61' ]
-  const [ products, setProducts ] = useState(productsMock.products)
-  const [ selectedProducts, setSelectedProducts ] = useState([])
-  const [ totalPrice, setTotalPrice ] = useState(0)
+  const dispatch = useDispatch()
+  const products = useSelector(selectAllProducts)
+  const selectedProducts = useSelector(selectSelectedProducts)
+  const totalPrice = useSelector(selectSelectedProductsTotalPrice)
 
-  function handleToggle(id, checked) {
-    const newProduct = products.map(product => product.id === id
-      ? ({ ...product, checked: !product.checked })
-      : product)
-    setProducts(newProduct)
+  function handleToggle(id) {
+    dispatch(toggleProduct(id))
   }
-
-  useEffect(() => {
-    const newSelectedProducts = products
-      .filter(product => product.checked)
-    setSelectedProducts(newSelectedProducts)
-  }, [ products ])
-
-  useEffect(() => {
-    const total = selectedProducts
-      .map(product => product.price)
-      .reduce((acc, rec) => acc + rec, 0)
-    setTotalPrice(total)
-  }, [ selectedProducts ])
 
   return (
     <Wrapper>
@@ -103,7 +91,7 @@ function App() {
                       currency: 'BRL'
                     }) }
                 </div>
-                <Calculator />
+                {/* <Calculator /> */ }
               </div>
             </div>
           }
